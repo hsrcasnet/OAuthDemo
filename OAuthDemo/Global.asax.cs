@@ -16,8 +16,8 @@ namespace OAuthDemo
         {
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);            
         }
     }
 }

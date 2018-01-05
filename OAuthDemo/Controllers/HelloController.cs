@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace OAuthDemo.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/hello")]
     public class HelloController : ApiController
     {
@@ -14,7 +15,7 @@ namespace OAuthDemo.Controllers
         [Route("sayhello")]
         public string SayHello()
         {
-            return "hello";
+            return $"Hello, {this.User.Identity.Name}";
         }
     }
 }

@@ -1,39 +1,42 @@
 ﻿
 
 $(function () {
-    var token = null;
+    var access_token = null;
 
     $('#loginButton').click(function () {
         var username = $('#username').val();
         var password = $('#password').val();
-        console.log(username);
-        console.log(password);
 
-        // todo oauth login
         $.ajax({
             url: 'token',
-            data: "grant_type=password&username=" + user.userName + "&password=" + user.password,
+            data: "grant_type=password&username=" + username + "&password=" + password,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             type: 'POST',
-            success: function(result) {
-                token = result;
+            cache: false,
+            success: function (result) {
+                console.log(result);
+                access_token = result.access_token;
+                $('<div>').text(JSON.stringify(result)).appendTo($('#output'));
             },
-            error: function(request, status, error) {
-                console.log(request);
-                console.log(status);
+            error: function (request, status, error) {
                 console.log(error);
+                $('<div>').text(error).appendTo($('#output'));
             }
         });
     });
 
-    $('#callWebApiMethod').click(function() {
+    $('#callWebApiMethod').click(function () {
         $.ajax({
             url: '/api/hello/sayhello',
             headers: {
-                'Authorization' : 'Bearer lkadsfdsfalkjfdafdaljfdsalkjfdsa'
+                'Authorization': 'Bearer ' + access_token
             },
-            success: function(result) {
+            success: function (result) {
                 $('<div>').text(result).appendTo($('#output'));
+            },
+            error: function (request, status, error) {
+                console.log(error);
+                $('<div>').text(error).appendTo($('#output'));
             }
         });
     });
