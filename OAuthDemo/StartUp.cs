@@ -5,6 +5,7 @@ using System;
 using System.Web.Http;
 using System.Web.Routing;
 using OAuthDemo;
+using OAuthDemo.Providers;
 
 [assembly: OwinStartup(typeof(Startup))]
 
@@ -36,8 +37,9 @@ namespace OAuthDemo
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(30),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new SimpleAuthorizationServerProvider(),
+                RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };
 
             // Token Generation
