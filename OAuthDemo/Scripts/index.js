@@ -41,4 +41,20 @@ $(function () {
         });
     });
 
+    $('#callGetClaims').click(function () {
+        $.ajax({
+            url: '/api/hello/getclaims',
+            headers: {
+                'Authorization': 'Bearer ' + access_token
+            },
+            success: function (result) {
+                $('<div>').text(result).appendTo($('#output'));
+            },
+            error: function (request, status, error) {
+                console.log(error);
+                $('<div>').text(error).appendTo($('#output'));
+            }
+        });
+    });
+
 });

@@ -29,7 +29,7 @@ namespace OAuthDemo
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim("role", "administrator"));
+            identity.AddClaim(new Claim(ClaimTypes.Role, "Administrator"));
 
             context.Validated(identity);
             return Task.CompletedTask;
